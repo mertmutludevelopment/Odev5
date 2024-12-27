@@ -3,7 +3,6 @@ package com.example.kisileruygulamasi.ui.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
@@ -31,7 +30,6 @@ import com.example.odev5.ui.screens.StorySection
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Anasayfa() {
-    // Seçili sekmeyi kontrol eden state
     val imageList = listOf(
         R.drawable.card1,
         R.drawable.card2,
@@ -42,10 +40,7 @@ fun Anasayfa() {
     )
     var selectedItem by remember { mutableStateOf(0) }
 
-    // Turkuaz renk
-    val Turquoise = Color(0xFF02C1E6) // RGB renk kodu
-
-    // Bottom Navigation Bar için item listesi
+    val Turquoise = Color(0xFF02C1E6)
     val items = listOf(
         "Anasayfa" to Icons.Outlined.Home,
         "Akıllı Cihazım" to Icons.Outlined.ElectricCar,
@@ -58,72 +53,70 @@ fun Anasayfa() {
         topBar = {
             CenterAlignedTopAppBar(
                 navigationIcon = {
-                    // Sol tarafta Togg logosu
                     Image(
-                        painter = painterResource(id = R.drawable.truemore_logo), // Logonun kaynağı
+                        painter = painterResource(id = R.drawable.truemore_logo),
                         contentDescription = "Togg Logo",
                         modifier = Modifier
-                            .size(120.dp) // Logonun boyutu
+                            .size(120.dp)
                             .padding(start = 8.dp),
                         contentScale = ContentScale.Fit
                     )
                 },
-                title = { Spacer(modifier = Modifier) }, // Boş bir başlık veriyoruz
+                title = { Spacer(modifier = Modifier) },
                 actions = {
                     Row {
-                        IconButton(onClick = { /* Alışveriş tıklama işlemi */ }) {
+                        IconButton(onClick = {  }) {
                             Icon(
-                                imageVector = Icons.Outlined.ShoppingBag, // Alışveriş ikonu
+                                imageVector = Icons.Outlined.ShoppingBag,
                                 contentDescription = "Shopping Bag Icon",
-                                modifier = Modifier.size(28.dp), // İkon boyutu
-                                tint = Turquoise // İkon rengi
+                                modifier = Modifier.size(28.dp),
+                                tint = Turquoise
                             )
                         }
-                        IconButton(onClick = { /* Bildirim tıklama işlemi */ }) {
+                        IconButton(onClick = {  }) {
                             Icon(
-                                imageVector = Icons.Outlined.Notifications, // Bildirim ikonu
+                                imageVector = Icons.Outlined.Notifications,
                                 contentDescription = "Notifications Icon",
-                                modifier = Modifier.size(28.dp), // İkon boyutu
-                                tint = Turquoise // İkon rengi
+                                modifier = Modifier.size(28.dp),
+                                tint = Turquoise
                             )
                         }
-                        IconButton(onClick = { /* Tıklama işlemi */ }) {
+                        IconButton(onClick = {  }) {
                             Icon(
-                                imageVector = Icons.Outlined.Person, // Material Design Person ikonu
+                                imageVector = Icons.Outlined.Person,
                                 contentDescription = "Profil İkonu",
-                                modifier = Modifier.size(28.dp), // İkon boyutu
-                                tint = Color.Black // İkon rengi
+                                modifier = Modifier.size(28.dp),
+                                tint = Color.Black
                             )
                         }
                     }
 
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color(0xFFF8F8F8) // TopBar arka plan rengi
+                    containerColor = Color(0xFFFAFAFA)
                 )
             )
         },
         bottomBar = {
             NavigationBar(
-                containerColor = Color(0xFFF8F8F8) // Alt çubuğun arka plan rengi
+                containerColor = Color(0xFFFAFAFA)
             ) {
                 items.forEachIndexed { index, item ->
-                    // Her öğe için NavigationBarItem çağrılır
                     NavigationBarItem(
                         selected = selectedItem == index,
                         onClick = { selectedItem = index },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Turquoise, // Seçili ikon rengi turkuaz
-                            selectedTextColor = Turquoise, // Seçili metin rengi turkuaz
-                            unselectedIconColor = Color.Gray, // Seçili olmayan ikon rengi
-                            unselectedTextColor = Color.Gray, // Seçili olmayan metin rengi
+                            selectedIconColor = Turquoise,
+                            selectedTextColor = Turquoise,
+                            unselectedIconColor = Color.Gray,
+                            unselectedTextColor = Color.Gray,
                             indicatorColor = Color.Transparent
                         ),
                         label = {
                             Text(
                                 text = item.first,
-                                textAlign = TextAlign.Center, // Metni ortala
-                                fontSize = 10.sp, // Yazı boyutu
+                                textAlign = TextAlign.Center,
+                                fontSize = 10.sp,
                                 maxLines = 1
                             )
                         },
@@ -132,18 +125,18 @@ fun Anasayfa() {
                                 if (selectedItem == index) {
                                     Box(
                                         modifier = Modifier
-                                            .height(3.dp) // Çizginin yüksekliği
-                                            .fillMaxWidth(0.4f) // Çizginin genişliği
+                                            .height(3.dp)
+                                            .fillMaxWidth(0.4f)
                                             .background(
                                                 color = Turquoise,
-                                                shape = RoundedCornerShape(50) // Köşeleri yuvarla
+                                                shape = RoundedCornerShape(50)
                                             )
                                     )
                                 }
                                 Icon(
                                     imageVector = item.second,
                                     contentDescription = item.first,
-                                    modifier = Modifier.size(28.dp) // İkon boyutu
+                                    modifier = Modifier.size(28.dp)
                                 )
                             }
                         }
@@ -152,11 +145,11 @@ fun Anasayfa() {
             }
         }
     ) { innerPadding ->
-        // Anasayfa içeriği
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .background(Color(0xFFFAFAFA))
         ) {
             StorySection()
             Spacer(modifier = Modifier.height(8.dp))
